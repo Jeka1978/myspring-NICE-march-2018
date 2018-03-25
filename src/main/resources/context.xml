@@ -4,41 +4,18 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:property-placeholder location="classpath:quotes.properties"/>
 
-    <bean class="com.nice.quoters.MyContextListener"/>
-    <bean class="com.nice.quoters.BeanDefinitionAnalyzerBeanFactoryPostProcessor"/>
-    <bean class="com.nice.quoters.InjectRandomIntAnnotationBeanPostProcessor"/>
+
     <!--<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>-->
 
-    <context:annotation-config/>
-
-    <bean id="nameFactory" class="com.nice.quoters.NameFactory"/>
-
-    <bean class="java.lang.String" scope="prototype" id="randomName" factory-bean="nameFactory" factory-method="getRandomName"/>
+    <context:component-scan base-package="com.nice.quoters"/>
 
 
-    <bean id="robot" class="com.nice.quoters.TalkingRobotImpl">
-        <property name="quoters">
-            <list>
-               <ref bean="shakespearQuoter"/>
-               <ref bean="terminatorQuoter"/>
-            </list>
-        </property>
-    </bean>
-    <bean id="terminatorQuoter" class="com.nice.quoters.TerminatorQuoter" destroy-method="killAll">
-        <property name="messages">
-            <list>
-                <value>${JAVA_HOME}</value>
-                <ref bean="randomName"/>
-                <value>Astalavista baby</value>
-            </list>
-        </property>
-    </bean>
 
-    <bean name="shakespearQuoter" class="com.nice.quoters.ShakespearQuoter">
-        <property name="message" value="${shake}"/>
-    </bean>
+
+
+
+
 
 
 </beans>

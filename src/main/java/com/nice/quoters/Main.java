@@ -1,5 +1,6 @@
 package com.nice.quoters;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Collection;
@@ -9,12 +10,8 @@ import java.util.Collection;
  */
 public class Main {
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
-        System.out.println("***********");
-        System.out.println(context.getBean(String.class));
-        System.out.println(context.getBean(String.class));
-        System.out.println(context.getBean(String.class));
-        System.out.println("***********");
+    AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(QuotersConfig.class);
+
         context.close();
     }
 }

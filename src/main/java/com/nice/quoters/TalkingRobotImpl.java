@@ -1,9 +1,11 @@
 package com.nice.quoters;
 
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.event.ContextClosedEvent;
-import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -11,8 +13,11 @@ import java.util.List;
 /**
  * @author Evgeny Borisov
  */
+@Component
 public class TalkingRobotImpl implements TalkingRobot {
+
     @Setter
+    @Film
     private List<Quoter> quoters;
 
     @EventListener(ContextClosedEvent.class)
@@ -23,6 +28,7 @@ public class TalkingRobotImpl implements TalkingRobot {
     @Override
     @PostConstruct
     public void talk() {
+        System.out.println("size of quoter list: "+quoters.size());
         quoters.forEach(Quoter::sayQuote);
     }
 }

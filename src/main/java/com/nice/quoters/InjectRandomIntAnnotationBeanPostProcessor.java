@@ -5,10 +5,12 @@ import com.nice.my_spring.InjectRandomIntAnnotationObjectConfigurator;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Evgeny Borisov
  */
+@Component
 public class InjectRandomIntAnnotationBeanPostProcessor implements BeanPostProcessor{
     @Nullable
     @Override
