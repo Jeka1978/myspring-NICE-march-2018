@@ -1,5 +1,7 @@
 package com.nice.java8;
 
+import lombok.SneakyThrows;
+
 import java.util.List;
 
 /**
@@ -7,6 +9,20 @@ import java.util.List;
  */
 public class ListUtil {
 
+
+
+    @SneakyThrows
+    public static <T> void forEachWithDelay(List<T> list, int delay, Action<T> action) {
+
+       /* list.forEach(t -> {
+            action.doAction(t);
+            Thread.sleep(delay);
+        });*/
+        for (T t : list) {
+            action.doAction(t);
+            Thread.sleep(delay);
+        }
+    }
 
 
     public static <T> int countDuplicate(T t, List<T> list,Equalator<T> equalator) {

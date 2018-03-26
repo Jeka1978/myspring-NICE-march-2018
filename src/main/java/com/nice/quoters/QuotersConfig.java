@@ -16,6 +16,7 @@ import java.util.List;
 @Configuration
 @PropertySource("classpath:quotes.properties")
 @ComponentScan(basePackages = "com.nice.quoters")
+@EnableAspectJAutoProxy
 public class QuotersConfig {
     @Autowired
     private NameFactory nameFactory;

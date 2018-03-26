@@ -14,7 +14,7 @@ public class ListUtilTest {
     @Test
     public void countDuplicate() throws Exception {
         List<String> strings = Arrays.asList("java", "JAva", "JAVA", "scala", "groovy");
-        ListUtil.countDuplicate("java", strings, (t1, t2) -> t1.equalsIgnoreCase(t2));
+        ListUtil.countDuplicate("java", strings, String::equalsIgnoreCase);
     }
 
 }
