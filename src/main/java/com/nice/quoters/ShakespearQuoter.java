@@ -4,6 +4,7 @@ import com.nice.my_spring.InjectRandomInt;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 /**
@@ -19,6 +20,8 @@ public class ShakespearQuoter implements Quoter {
     private String message;
 
     @Override
+
+    @Async
     public void sayQuote() {
         for (int i = 0; i < repeat; i++) {
             System.out.println(message);
