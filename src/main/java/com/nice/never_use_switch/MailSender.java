@@ -1,23 +1,34 @@
 package com.nice.never_use_switch;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
+
 /**
  * @author Evgeny Borisov
  */
 
+@Service
 public class MailSender {
-    private MailDao dao = new MailDaoImpl();
+    @Autowired
+    private MailDao dao;
 
+    @Autowired
+    private Map<String, MailGenerator> map;
+
+    @Scheduled(fixedDelay = 1000)
     public void sendMail() {
-        int mailCode = dao.getMailCode();
-        switch (mailCode) {
-            case 1:
-                // 50 lines of code
-                System.out.println("Welcome new client");
-                break;
-            case 2:
-                System.out.println("don't call us we call you");
-                //70 lines of code
-                break;
-        }
+        String mailCode = String.valueOf(dao.getMailCode());
+        MailGenerator mailGenerator = map.getOrDefault(mailCode, () -> {
+            throw new RuntimeException(mailCode + " not supported");
+        });
+        String html = mailGenerator.generate();
+        send(html);
+    }
+
+    private void send(String html) {
+        System.out.println("html = " + html+" was sent to client");
     }
 }
