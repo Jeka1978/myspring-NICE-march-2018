@@ -5,4 +5,6 @@ package com.nice.never_use_switch;
  */
 public interface MailGenerator {
     String generate();
+
+    int myCode();
 }
